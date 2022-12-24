@@ -1,0 +1,86 @@
+name: 'Mkdocs Site Builder'
+description: 'Action to build Mkdocs site using Markdown files located in one repo and config files stored in a different repo'
+
+inputs:
+  build_mode:
+    description: >
+      '"auto" mode copies the files as is from the main repository to be used to build the site. 
+      "partial" mode allows user to specific the location in the main repository that contains the markdown files and configuration files used by mkdocs.
+      "manual" Mode is required when the markdown files and configuration files are stored in a different repository, allows to specific directory in each repository to be used to copied over files for building the site'
+    required: false
+    default: 'auto'
+  main_repository:
+    description: 'Repository name with owner (e.g. dvdmtw98/mkdocs-site-builder)'
+    required: true
+  main_repo_checkout:
+    description: 'Branch, Tag or SHA Hash to checkout'
+    required: false
+    default: main
+  main_repo_access_token:
+    description: 'Personal Access Token (PAT) required to access the main repository'
+    required: false
+  config_repository:
+    description: 'Repository name in GitHub format (e.g. dvdmtw98/mkdocs-site-builder)'
+    required: false
+  config_repo_checkout:
+    description: 'Branch, Tag or SHA Hash to checkout'
+    required: false
+    default: main
+  config_repo_access_token:
+    description: 'Personal Access Token (PAT) required to access the config repository'
+    required: false
+  markdown_location:
+    description: 'Specify folder that contains the Markdown files to be used'
+    required: false
+    default: docs
+  assets_and_hooks_present:
+    description: 'Set to true if assets and/or hook files need to be copied over to build site'
+    required: false
+    default: "true"
+  assets_location:
+    description: 'Specify folder that contains assets to be used to the site'
+    required: false
+    default: assets
+  hooks_location:
+    description: 'Specify folder that stores the hook scripts to be executed before site build'
+    required: false
+    default: hooks
+  config_location:
+    description: 'Specify folder that stores mkdocs.yml and requirements.txt file'
+    required: false
+    default: .
+  netlify_auth_token:
+    description: 'Personal Access Token (PAT) used to access Netlify'
+    required: true
+  netlify_site_id:
+    description: 'Id of site to deploy the newly compiled code'
+    required: true
+  social_plugin_used:
+    description: 'Set to true if the Mkdocs social plugin is used to generate link previews'
+    required: false
+    default: "false"
+  
+
+outputs:
+  netlify_output:
+    description: 'Stored the deployment details returned by Netlify'
+
+runs:
+  using: docker
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.build_mode }}
+    - ${{ inputs.main_repository }}
+    - ${{ inputs.main_repo_checkout }}
+    - ${{ inputs.main_repo_access_token }}
+    - ${{ inputs.config_repository }}
+    - ${{ inputs.config_repo_checkout }}
+    - ${{ inputs.config_repo_access_token }}
+    - ${{ inputs.markdown_location }}
+    - ${{ inputs.assets_and_hooks_present }}
+    - ${{ inputs.assets_location }}
+    - ${{ inputs.hooks_location }}
+    - ${{ inputs.config_location }}
+    - ${{ inputs.netlify_auth_token }}
+    - ${{ inputs.netlify_site_id }}
+    - ${{ inputs.social_plugin_used }}
