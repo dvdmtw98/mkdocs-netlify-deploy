@@ -143,7 +143,7 @@ deploy_to_netlify () {
     time=$(date)
 
     netlify_output=$(
-        netlify deploy --auth $INPUT_NETLIFY_AUTH_TOKEN --dir site \
+        netlify deploy --json --auth $INPUT_NETLIFY_AUTH_TOKEN --dir site \
         --message "Deployed on ${time}" --site $INPUT_NETLIFY_SITE_ID --prod
     )
 }
@@ -170,8 +170,6 @@ main () {
     build_mkdocs_site
 
     deploy_to_netlify
-
-    echo "netlify_output=$netlify_output" >> $GITHUB_OUTPUT
 }
 
 main

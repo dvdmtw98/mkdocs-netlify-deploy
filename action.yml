@@ -1,5 +1,10 @@
-name: 'Mkdocs Site Builder'
-description: 'Action to build Mkdocs site using Markdown files located in one repo and config files stored in a different repo'
+name: Mkdocs Netlify Deploy
+author: David Varghese
+description: 'Action to build Mkdocs site with three different build approaches and then deploy to Netlify'
+
+branding:
+  icon: 'globe'
+  color: 'green'
 
 inputs:
   build_mode:
@@ -59,11 +64,6 @@ inputs:
     description: 'Set to true if the Mkdocs social plugin is used to generate link previews'
     required: false
     default: "false"
-  
-
-outputs:
-  netlify_output:
-    description: 'Stored the deployment details returned by Netlify'
 
 runs:
   using: docker
