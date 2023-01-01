@@ -6,14 +6,6 @@ print_info () {
     echo -e "\033[0;93m $1 \033[0m"
 }
 
-social_plugin_dependencies () {
-    if [[ "${INPUT_SOCIAL_PLUGIN_USED}" == "true" ]];
-    then
-        print_info "Installing extra packages required by mkdocs social plugin..."
-        apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
-    fi
-}
-
 manual_setup_configuration () {
     print_info "Starting manual configuration mode..."
     mkdir -p mkdocs/{docs,hooks}
@@ -147,12 +139,12 @@ deploy_to_netlify () {
         netlify deploy --json --auth $INPUT_NETLIFY_AUTH_TOKEN --dir site \
         --message "GitHub Actions deployment : ${time}" --site $INPUT_NETLIFY_SITE_ID --prod
     )
+
+    echo "netlify_output=$netlify_output" >> $GITHUB_OUTPUT
 }
 
 main () {
     cd /tmp
-
-    social_plugin_dependencies
 
     if [[ "${INPUT_BUILD_MODE}" == "manual" ]]; 
     then 

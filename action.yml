@@ -53,17 +53,17 @@ inputs:
   config_location:
     description: 'Specify folder that stores mkdocs.yml and requirements.txt file'
     required: false
-    default: .
+    default: /
   netlify_auth_token:
     description: 'Personal Access Token (PAT) used to access Netlify'
     required: true
   netlify_site_id:
     description: 'Id of site to deploy the newly compiled code'
     required: true
-  social_plugin_used:
-    description: 'Set to true if the Mkdocs social plugin is used to generate link previews'
-    required: false
-    default: "false"
+
+outputs:
+  netlify_output:
+    description: 'Deployment results returned by Netlify CLI'
 
 runs:
   using: docker
@@ -83,4 +83,3 @@ runs:
     - ${{ inputs.config_location }}
     - ${{ inputs.netlify_auth_token }}
     - ${{ inputs.netlify_site_id }}
-    - ${{ inputs.social_plugin_used }}
