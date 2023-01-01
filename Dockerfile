@@ -18,5 +18,5 @@ COPY entrypoint.sh /tmp/entrypoint.sh
 # Execute the script to start build process
 ENTRYPOINT [ "/tmp/entrypoint.sh" ]
 
-# NImage URL
+# Image URL
 # https://hub.docker.com/r/nikolaik/python-nodejs

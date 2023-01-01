@@ -20,7 +20,7 @@ In this mode the Markdown files are stored in one repository while all the confi
 | `build_mode`               | required |     auto    | Build approach to use for building site                        |
 | `main_repository`          | required |             | Repository 1 Name                                              |
 | `main_repo_checkout`       | optional |     main    | Branch, Hash of repository to use                              |
-| `main_repo_access_token`   | required |             | Token required to access repository                            |
+| `main_repo_access_token`   | optional |             | Token required to access repository                            |
 | `config_repository`        | optional |             | Repository 2 Name (Only required in manual mode)               |
 | `config_repo_checkout`     | optional |     main    | Branch, Hash from repository to use                            |
 | `config_repo_access_token` | optional |             | Token required to access repository                            |
@@ -28,7 +28,7 @@ In this mode the Markdown files are stored in one repository while all the confi
 | `assets_and_hooks_present` | optional |     true    | Denote Assets/ Hooks are required                              |
 | `assets_location`          | optional |    assets   | Directory containing Mkdocs Assets                             |
 | `hooks_location`           | optional |    hooks    | Directory containing Hook files                                |
-| `config_location`          | optional |      .      | Location of mkdocs.yml and requirements.txt file               |
+| `config_location`          | optional |      /      | Location of mkdocs.yml and requirements.txt file               |
 | `netlify_auth_token`       | required |             | PAT Token to authenticate with Netlify                         |
 | `netlify_site_id`          | required |             | Target Netlify Site ID                                         |
 | `social_plugin_used`       | optional |    false    | Install dependencies required by Material Mkdocs social plugin |
